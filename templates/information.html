@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <title>Welcome to my place</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]--></head>
+  
+  <body>
+    <!--导航-->
+    <!--282结构-->
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="row">
+        <div class='col-xs-2 col-sm-2 col-md-2'></div>
+        <div class='col-xs-8 col-sm-8 col-md-8'>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Li Zhengtan</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="/">首页</a></li>
+              <li class="active">
+                <a href="#">个人信息</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">技能点
+                  <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#">Python</a></li>
+                  <li>
+                    <a href="#">JavaScript</a></li>
+                  <li>
+                    <a href="#">SQL</a></li>
+                  <!--<li class="divider"></li>-->
+                  <!--li中划线示例-->
+                  <li>
+                    <a href="#">Photoshop</a></li>
+                  <li>
+                    <a href="#">Excel</a></li>
+                </ul>
+              </li>
+            </ul>
+            <!--导航栏中的搜索，暂时用不上 <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search"></div>
+            <button type="submit" class="btn btn-default">Submit</button></form>
+            -->
+            <!--右侧导航 <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li></ul>
+            </li>
+            </ul>
+            -->
+            <!--暂定天气元素，用flask后台获取Ip地址转换后渲染模板，或者用js获取Ip,ajax加载天气信息-->
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <a>{{weather[0]}}</a>
+              </li>
+              <li>
+                <a>{{weather[1]}}</a>
+              </li>
+              <li>
+                <a>{{weather[2]}}</a>
+              </li>
+              <li>
+                <a>{{weather[3]}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class='col-xs-2 col-sm-2 col-md-2'>
+        </div>
+      </div>
+    </nav>
+    <div class='row'>
+      <div class='col-xs-2 col-sm-2 col-md-2'>
+      </div>
+      <div class='col-xs-8 col-sm-8 col-md-8'>
+        <nav>
+          <ul class="pagination">
+            <li id='show_model' class='active'>
+              <a href="#">展示模式</a></li>
+            <li id='edit_model' class=''>
+              <a href="#">编辑模式</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class='col-xs-2 col-sm-2 col-md-2'>
+      </div>
+    </div>
+    <div id='resume'>
+      <div class='col-xs-2 col-sm-2 col-md-2'>
+      </div>
+      <div class='col-xs-8 col-sm-8 col-md-8'>
+        <div id='show_div' class='show'>
+          <div id='information'>
+            <div class='row'>
+              <div class='col-xs-4 col-sm-4 col-md-4'>
+              </div>
+              <div class='col-xs-4 col-sm-4 col-md-4'>
+                <h2 id='resume_name' class="text-center">{{information['name']}}</h2>
+              </div>
+              <div class='col-xs-4 col-sm-4 col-md-4'>
+              </div>
+            </div>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+              </div>
+              <div class='col-xs-1 col-sm-1 col-md-1' id='resume_tel'>
+                <h4>TEL:</h4>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <h4 id='resume_tel_text'>{{information['tel']}}</h4>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+              </div>
+              <div class='col-xs-1 col-sm-1 col-md-1' id='resume_email'>
+                <h4>Email:</h4>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <h4 id='resume_email_text'>{{information['email']}}</h4>
+              </div>
+              <div calss='col-xs-2 col-sm-2 col-md-2'>
+              </div>
+            </div>
+          </div>
+          <div id='education'>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <h3>教育经历</h3>
+              </div>
+              <div class='col-xs-10 col-sm-10 col-md-10'>
+              </div>
+            </div>
+            <hr style=" height:1px;border:none;border-top:1px solid #000000;" />
+            <div id='education_list'>
+              {% for edu in educations %}
+              <div id='education_1'>
+                <div class='row'>
+                  <div class='col-xs-5 col-sm-5 col-md-5' id='education_{{edu[0]}}_date'>
+                    <div class='row'>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <h4 id='education_{edu[0]}}_date_start'>{{edu[1]}}</h4>
+                      </div>
+                      <div class='col-xs-1 col-sm-1 col-md-1'>
+                        <h4>—</h4>
+                      </div>
+                      <div class='col-xs-4 col-sm-4 col-md-4'>
+                        <h4 id='education_{edu[0]}}_date_end'>{{edu[2]}}</h4>
+                      </div>
+                      <div class='col-xs-4 col-sm-4 col-md-4'>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='col-xs-4 col-sm-4 col-md-4' id='education_{edu[0]}}_school'>
+                    <h4>{{edu[3]}}</h4>
+                  </div>
+                  <div class='col-xs-3 col-sm-3 col-md-3 text-right' id='education_{edu[0]}}_major'>
+                    <h4>{{edu[4]}}</h4>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-xs-12 col-sm-12 col-md-12' id='education_{edu[0]}}_describe'>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          </br>
+          <div id='work'>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <h3>工作经历</h3>
+              </div>
+              <div class='col-xs-10 col-sm-10 col-md-10'>
+              </div>
+            </div>
+            <hr style=" height:1px;border:none;border-top:1px solid #000000;" />
+            <div id='work_list'>{% for work in works %}
+              <div id='work_{{work[0]}}'>
+                <div class='row'>
+                  <div class='col-xs-5 col-sm-5 col-md-5' id='work_{{work[0]}}_date'>
+                    <div class='row'>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <h4 id='work_{{work[0]}}_date_start'>{{work[1]}}</h4>
+                      </div>
+                      <div class='col-xs-1 col-sm-1 col-md-1'>
+                        <h4>—</h4>
+                      </div>
+                      <div class='col-xs-4 col-sm-4 col-md-4'>
+                        <h4 id='work_{{work[0]}}_date_end'>{{work[2]}}</h4>
+                      </div>
+                      <div class='col-xs-4 col-sm-4 col-md-4'>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='col-xs-4 col-sm-4 col-md-4' id='work_{{work[0]}}_where'>
+                    <h4>{{work[3]}}</h4>
+                  </div>
+                  <div class='col-xs-3 col-sm-3 col-md-3 text-right' id='work_{{work[0]}}_who'>
+                    <h4>{{work[4]}}</h4>
+                  </div>
+                </div>
+                <div class='row'>
+                  <div class='col-xs-12 col-sm-12 col-md-12' id='work_{{work[0]}}_describe'>
+                    <p>{{work[5]}}</p>
+                    <p>{{work[6]}}</p>
+                    <p>{{work[7]}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          </br>
+          <div id='program'>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <h3>项目经验</h3></div>
+              <div class='col-xs-10 col-sm-10 col-md-10'></div>
+            </div>
+            <hr style=" height:1px;border:none;border-top:1px solid #000000;" />
+            <div id='program_list'>{% for program in programs %}
+              <div id='program_{{program[0]}}'>
+                <div class='row'>
+                  <div class='col-xs-5 col-sm-5 col-md-5' id='program_{{program[0]}}_date'>
+                    <div class='row'>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <h4 id='program_{{program[0]}}_date_start'>{{program[1]}}</h4></div>
+                      <div class='col-xs-1 col-sm-1 col-md-1'>
+                        <h4>—</h4></div>
+                      <div class='col-xs-4 col-sm-4 col-md-4'>
+                        <h4 id='program_{{program[0]}}_date_end'>{{program[2]}}</h4></div>
+                      <div class='col-xs-4 col-sm-4 col-md-4'></div>
+                    </div>
+                  </div>
+                  <div class='col-xs-4 col-sm-4 col-md-4' id='program_{{program[0]}}_where'>
+                    <h4>{{program[3]}}</h4></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3 text-right' id='program_{{program[0]}}_who'>
+                    <h4>{{program[4]}}</h4></div>
+                </div>
+                <div class='row'>
+                  <div class='col-xs-12 col-sm-12 col-md-12' id='program_{{program[0]}}_describe'>
+                    <p>{{program[5]}}</p>
+                    <p>{{program[6]}}</p>
+                    <p>{{program[7]}}</p>
+                  </div>
+                </div>
+              </div>{% endfor %}</div>
+          </div>
+          </br>
+          <div id='skill'>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <h3>个人技能</h3></div>
+              <div class='col-xs-10 col-sm-10 col-md-10'></div>
+            </div>
+            <hr style=" height:1px;border:none;border-top:1px solid #000000;" />
+            <div id='skill_list'>{% for skill in skills %}
+              <p>{{skill[1]}}</p>{% endfor %}</div>
+          </div>
+          </br>
+          </br>
+          </br>
+        </div>
+        <!--编辑模块部分-->
+        <div id='edit_div' class='hidden'>
+          <div id='bj_information'>
+            <div class='row'>
+              <div class='col-xs-4 col-sm-4 col-md-4'></div>
+              <div class='col-xs-4 col-sm-4 col-md-4'>
+                <h2 id='bj_resume_name' class="text-center">{{information['name']}}</h2></div>
+              <div class='col-xs-4 col-sm-4 col-md-4'></div>
+            </div>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'></div>
+              <div class='col-xs-1 col-sm-1 col-md-1' id='bj_resume_tel'>
+                <h4>TEL:</h4>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <input type='text' class='form-control' id='bj_resume_tel_text' placeholder='{{information['tel']}}'></input>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'></div>
+              <div class='col-xs-1 col-sm-1 col-md-1' id='bj_resume_email'>
+                <h4>Email:</h4></div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <input type='email' class='form-control' id='bj_resume_email_text' placeholder='{{information['email']}}'></input>
+              </div>
+              <div calss='col-xs-2 col-sm-2 col-md-2'>
+                <button type="button" class="btn btn-primary" id='bj_information_save'>保存</button></div>
+            </div>
+            </br>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'></div>
+              <div class='col-xs-7 col-sm-7 col-md-7'>
+                <nav>
+                  <ul class="pagination">
+                    <li id='education_model' class='active'>
+                      <a href="#">教育经历</a></li>
+                    <li id='work_model' class=''>
+                      <a href="#">工作经历</a></li>
+                    <li id='program_model' class=''>
+                      <a href="#">项目经历</a></li>
+                    <li id='skill_model' class=''>
+                      <a href="#">个人技能</a></li>
+                  </ul>
+                </nav>
+              </div>
+              <div class='col-xs-3 col-sm-3 col-md-3'></div>
+            </div>
+            </br>
+            <div id='education_bj' class='show'>
+              <div class='row'>
+                <div class='col-xs-2 col-sm-2 col-md-2'></div>
+                <div class='col-xs-8 col-sm-8 col-md-8'>
+                  <div class='row'>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <h5>开始时间</h5></div>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <h5>结束时间</h5></div>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <h5>学校</h5></div>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <h5>专业</h5></div>
+                  </div>
+                </div>
+                <div class='col-xs-2 col-sm-2 col-md-2'>
+                  <button type="button" class="btn btn-primary" id='education_bj_add'>添加</button>
+                </div>
+              </div>
+              {% for edu in educations %}
+              <div id='education_{{edu[0]}}_bj'>
+                <div class='row'>
+                  <div class='col-xs-2 col-sm-2 col-md-2'></div>
+                  <div class='col-xs-8 col-sm-8 col-md-8'>
+                    <div class='row'>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <input type='text' class='form-control' id='education_{{edu[0]}}_bj_start' value='{{edu[1]}}'>
+                      </div>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <input type='text' class='form-control' id='education_{{edu[0]}}_bj_end' value='{{edu[2]}}'>
+                      </div>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <input type='text' class='form-control' id='education_{{edu[0]}}_bj_school' value='{{edu[3]}}'>
+                      </div>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <input type='text' class='form-control' id='education_{{edu[0]}}_bj_major' value='{{edu[4]}}'>
+                      </div>
+                    </div>
+                  </div>
+                  <div class='col-xs-2 col-sm-2 col-md-2'>
+                    <button type="button" class="btn btn-primary" onclick='save_edu(this)' name='{{edu[0]}}' id='education_{{edu[0]}}_bj_save'>保存</button>
+                    <button type="button" class="btn btn-primary" onclick='del_edu(this)' name='{{edu[0]}}' id='education_{{edu[0]}}_bj_del'>删除</button>
+                  </div>
+                </div>
+              </div>
+              </br>
+              {% endfor %}
+              <div id='education_add' class='hidden'>
+                <div class='row'>
+                  <div class='col-xs-2 col-sm-2 col-md-2'></div>
+                  <div class='col-xs-8 col-sm-8 col-md-8'>
+                    <div class='row'>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <input type='text' class='form-control' id='education_bj_start' value=''></div>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <input type='text' class='form-control' id='education_bj_end' value=''></div>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <input type='text' class='form-control' id='education_bj_school' value=''></div>
+                      <div class='col-xs-3 col-sm-3 col-md-3'>
+                        <input type='text' class='form-control' id='education_bj_major' value=''></div>
+                    </div>
+                  </div>
+                  <div class='col-xs-2 col-sm-2 col-md-2'>
+                    <button type="button" class="btn btn-primary" id='education_bj_save'>保存</button>
+                    <button type="button" class="btn btn-primary" id='education_bj_del'>删除</button></div>
+                </div>
+              </div>
+              </br>
+            </div>
+          </div>
+          <div id='work_bj' class='hidden'>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'></div>
+              <div class='col-xs-8 col-sm-8 col-md-8'>
+                <div class='row'>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <h5>开始时间</h5></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <h5>结束时间</h5></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <h5>公司</h5></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <h5>职位</h5></div>
+                </div>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <button type="button" class="btn btn-primary" id='work_bj_add'>添加</button></div>
+            </div>{% for work in works %}
+            <div id='work_{{work[0]}}_bj'>
+              <div class='row'>
+                <div class='col-xs-2 col-sm-2 col-md-2'>
+                  <button type="button" class="btn btn-primary pull-right" id='work_{{work[0]}}_bj_show' onclick='show_describe(this)'>展开</button></div>
+                <div class='col-xs-8 col-sm-8 col-md-8'>
+                  <div class='row'>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <input type='text' class='form-control' id='work_{{work[0]}}_bj_start' value='{{work[1]}}'></div>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <input type='text' class='form-control' id='work_{{work[0]}}_bj_end' value='{{work[2]}}'></div>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <input type='text' class='form-control' id='work_{{work[0]}}_bj_place' value='{{work[3]}}'></div>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <input type='text' class='form-control' id='work_{{work[0]}}_bj_job' value='{{work[4]}}'></div>
+                  </div>
+                  </br>
+                  <div id='work_{{work[0]}}_bj_show_describe' class='hidden'>
+                    <div class='row'>
+                      <div class='col-xs-12 col-sm-12 col-md-12'>
+                        <input type='text' class='form-control' id='work_{{work[0]}}_bj_describe_1' value='{{work[5]}}'></br>
+                        <input type='text' class='form-control' id='work_{{work[0]}}_bj_describe_2' value='{{work[6]}}'></br>
+                        <input type='text' class='form-control' id='work_{{work[0]}}_bj_describe_3' value='{{work[7]}}'></div>
+                    </div>
+                  </div>
+                </div>
+                <div class='col-xs-2 col-sm-2 col-md-2'>
+                  <button type="button" class="btn btn-primary" onclick='save_work(this)' name='{{work[0]}}' id='work_{{work[0]}}_bj_save'>保存</button>
+                  <button type="button" class="btn btn-primary" onclick='del_work(this)' name='{{work[0]}}' id='work_{{work[0]}}_bj_del'>删除</button></div>
+              </div>
+            </div>
+            </br>{% endfor %}
+            <div id='work_add' class='hidden'>
+              <div class='row'>
+                <div class='col-xs-2 col-sm-2 col-md-2'>
+                  <button type="button" class="btn btn-primary pull-right" id='work_bj_show' onclick='show_describe(this)'>展开</button></div>
+                <div class='col-xs-8 col-sm-8 col-md-8'>
+                  <div class='row'>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <input type='text' class='form-control' id='work_bj_start' value=''></div>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <input type='text' class='form-control' id='work_bj_end' value=''></div>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <input type='text' class='form-control' id='work_bj_place' value=''></div>
+                    <div class='col-xs-3 col-sm-3 col-md-3'>
+                      <input type='text' class='form-control' id='work_bj_job' value=''></div>
+                  </div>
+                  </br>
+                  <div id='work_bj_show_describe' class='hidden'>
+                    <div class='row'>
+                      <div class='col-xs-12 col-sm-12 col-md-12'>
+                        <input type='text' class='form-control' id='work_bj_describe_1' value=''></br>
+                        <input type='text' class='form-control' id='work_bj_describe_2' value=''></br>
+                        <input type='text' class='form-control' id='work_bj_describe_3' value=''></div>
+                    </div>
+                  </div>
+                </div>
+                <div class='col-xs-2 col-sm-2 col-md-2'>
+                  <button type="button" class="btn btn-primary" id='work_bj_save'>保存</button>
+                  <button type="button" class="btn btn-primary" id='work_bj_del'>删除</button></div>
+              </div>
+            </div>
+          </div>
+          <div id='program_bj' class='hidden'>
+          <div class='row'>
+            <div class='col-xs-2 col-sm-2 col-md-2'></div>
+            <div class='col-xs-8 col-sm-8 col-md-8'>
+              <div class='row'>
+                <div class='col-xs-3 col-sm-3 col-md-3'>
+                  <h5>开始时间</h5></div>
+                <div class='col-xs-3 col-sm-3 col-md-3'>
+                  <h5>结束时间</h5></div>
+                <div class='col-xs-3 col-sm-3 col-md-3'>
+                  <h5>项目</h5></div>
+                <div class='col-xs-3 col-sm-3 col-md-3'>
+                  <h5>身份</h5></div>
+              </div>
+            </div>
+            <div class='col-xs-2 col-sm-2 col-md-2'>
+              <button type="button" class="btn btn-primary" id='program_bj_add'>添加</button></div>
+          </div>{% for program in programs %}
+          <div id='program_{{program[0]}}_bj'>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <button type="button" class="btn btn-primary pull-right" id='program_{{program[0]}}_bj_show' onclick='show_describe(this)'>展开</button></div>
+              <div class='col-xs-8 col-sm-8 col-md-8'>
+                <div class='row'>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <input type='text' class='form-control' id='program_{{program[0]}}_bj_start' value='{{program[1]}}'></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <input type='text' class='form-control' id='program_{{program[0]}}_bj_end' value='{{program[2]}}'></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <input type='text' class='form-control' id='program_{{program[0]}}_bj_place' value='{{program[3]}}'></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <input type='text' class='form-control' id='program_{{program[0]}}_bj_job' value='{{program[4]}}'></div>
+                </div>
+                </br>
+                <div id='program_{{program[0]}}_bj_show_describe' class='hidden'>
+                  <div class='row'>
+                    <div class='col-xs-12 col-sm-12 col-md-12'>
+                      <input type='text' class='form-control' id='program_{{program[0]}}_bj_describe_1' value='{{program[5]}}'></br>
+                      <input type='text' class='form-control' id='program_{{program[0]}}_bj_describe_2' value='{{program[6]}}'></br>
+                      <input type='text' class='form-control' id='program_{{program[0]}}_bj_describe_3' value='{{program[7]}}'></div>
+                  </div>
+                </div>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <button type="button" class="btn btn-primary" onclick='save_program(this)' name='{{program[0]}}' id='program_{{program[0]}}_bj_save'>保存</button>
+                <button type="button" class="btn btn-primary" onclick='del_program(this)' name='{{program[0]}}' id='program_{{program[0]}}_bj_del'>删除</button></div>
+            </div>
+          </div>
+          </br>{% endfor %}
+          <div id='program_add' class='hidden'>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <button type="button" class="btn btn-primary pull-right" id='program_bj_show' onclick='show_describe(this)'>展开</button></div>
+              <div class='col-xs-8 col-sm-8 col-md-8'>
+                <div class='row'>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <input type='text' class='form-control' id='program_bj_start' value=''></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <input type='text' class='form-control' id='program_bj_end' value=''></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <input type='text' class='form-control' id='program_bj_place' value=''></div>
+                  <div class='col-xs-3 col-sm-3 col-md-3'>
+                    <input type='text' class='form-control' id='program_bj_job' value=''></div>
+                </div>
+                </br>
+                <div id='program_bj_show_describe' class='hidden'>
+                  <div class='row'>
+                    <div class='col-xs-12 col-sm-12 col-md-12'>
+                      <input type='text' class='form-control' id='program_bj_describe_1' value=''></br>
+                      <input type='text' class='form-control' id='program_bj_describe_2' value=''></br>
+                      <input type='text' class='form-control' id='program_bj_describe_3' value=''></div>
+                  </div>
+                </div>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <button type="button" class="btn btn-primary" id='program_bj_save'>保存</button>
+                <button type="button" class="btn btn-primary" id='program_bj_del'>删除</button></div>
+            </div>
+          </div>
+          </div>
+          <div id='skill_bj' class='hidden'>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+              </div>
+              <div class='col-xs-8 col-sm-8 col-md-8'>
+                <h5>描述信息</h5>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <button type="button" class="btn btn-primary" id='skill_bj_add'>添加</button>
+              </div>
+            </div>
+            {% for skill in skills %}
+            <div class='row'>
+            <div class='col-xs-2 col-sm-2 col-md-2'>
+            </div>
+            <div class='col-xs-8 col-sm-8 col-md-8'>
+              <div class='row'>
+                <div class='col-xs-12 col-sm-12 col-md-12'>
+                  <input type='text' class='form-control' id='skill_{{skill[0]}}_describe' value='{{skill[1]}}'></br>
+                </div>
+              </div>
+            </div>
+            <div class='col-xs-2 col-sm-2 col-md-2'>
+              <button type="button" class="btn btn-primary" onclick='save_skill(this)' name='{{skill[0]}}' id='skill_{{skill[0]}}_bj_save'>保存</button>
+              <button type="button" class="btn btn-primary" onclick='del_skill(this)' name='{{skill[0]}}' id='skill_{{skill[0]}}_bj_del'>删除</button>
+            </div>
+            </div>
+            {% endfor %}
+            <div id='skill_add' class='hidden'>
+            <div class='row'>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+              </div>
+              <div class='col-xs-8 col-sm-8 col-md-8'>
+                <input type='text' class='form-control' id='skill_describe' value=''>
+              </div>
+              <div class='col-xs-2 col-sm-2 col-md-2'>
+                <button type="button" class="btn btn-primary" id='skill_bj_save'>保存</button>
+                <button type="button" class="btn btn-primary" id='skill_bj_del'>删除</button>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='col-xs-2 col-sm-2 col-md-2'>
+      </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script>//展示与编辑模式的跳转以及相应模块的展示
+      $('#edit_model').click(function() {
+        $('#edit_model').attr('class', 'active');
+        $('#show_model').attr('class', '');
+        $('#show_div').attr('class', 'hidden');
+        $('#edit_div').attr('class', 'show');
+      });
+      $('#show_model').click(function() {
+        $('#show_model').attr('class', 'active');
+        $('#edit_model').attr('class', '');
+        $('#show_div').attr('class', 'show');
+        $('#edit_div').attr('class', 'hidden');
+      });
+
+      $('#education_model').click(function() {
+        $('#education_model').attr('class', 'active');
+        $('#work_model').attr('class', '');
+        $('#program_model').attr('class', '');
+        $('#skill_model').attr('class', '');
+
+        $('#education_bj').attr('class', 'show');
+        $('#work_bj').attr('class', 'hidden');
+        $('#program_bj').attr('class', 'hidden');
+        $('#skill_bj').attr('class', 'hidden');
+      });
+
+      $('#work_model').click(function() {
+        $('#education_model').attr('class', '');
+        $('#work_model').attr('class', 'active');
+        $('#program_model').attr('class', '');
+        $('#skill_model').attr('class', '');
+
+        $('#education_bj').attr('class', 'hidden');
+        $('#work_bj').attr('class', 'show');
+        $('#program_bj').attr('class', 'hidden');
+        $('#skill_bj').attr('class', 'hidden');
+      });
+
+      $('#program_model').click(function() {
+        $('#education_model').attr('class', '');
+        $('#work_model').attr('class', '');
+        $('#program_model').attr('class', 'active');
+        $('#skill_model').attr('class', '');
+
+        $('#education_bj').attr('class', 'hidden');
+        $('#work_bj').attr('class', 'hidden');
+        $('#program_bj').attr('class', 'show');
+        $('#skill_bj').attr('class', 'hidden');
+      });
+
+      $('#skill_model').click(function() {
+        $('#education_model').attr('class', '');
+        $('#work_model').attr('class', '');
+        $('#program_model').attr('class', '');
+        $('#skill_model').attr('class', 'active');
+
+        $('#education_bj').attr('class', 'hidden');
+        $('#work_bj').attr('class', 'hidden');
+        $('#program_bj').attr('class', 'hidden');
+        $('#skill_bj').attr('class', 'show');
+      });
+
+      $('#education_bj_add').click(function() {
+        $('#education_add').attr('class', 'show');
+      });
+
+      $('#education_bj_del').click(function() {
+        $('#education_add').attr('class', 'hidden');
+      });
+
+      $('#work_bj_add').click(function() {
+        $('#work_add').attr('class', 'show');
+      });
+
+      $('#work_bj_del').click(function() {
+        $('#work_add').attr('class', 'hidden');
+      });
+
+      $('#program_bj_add').click(function() {
+        $('#program_add').attr('class', 'show');
+      });
+
+      $('#program_bj_del').click(function() {
+        $('#program_add').attr('class', 'hidden');
+      });
+
+      $('#skill_bj_add').click(function() {
+        $('#skill_add').attr('class', 'show');
+      });
+
+      $('#skill_bj_del').click(function() {
+        $('#skill_add').attr('class', 'hidden');
+      });
+
+      $('#bj_information_save').click(function() {
+        var tel = document.getElementById('bj_resume_tel_text').value;
+        var email = document.getElementById('bj_resume_email_text').value;
+
+        var insertLimit = new Object();
+        insertLimit.tel = tel;
+        insertLimit.email = email;
+
+        $.ajax({
+          type: "POST",
+          url: "/update_information",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(insertLimit),
+          success: function(data) {
+            alert('保存成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("保存失败");
+          }
+        });
+      });
+
+      function save_edu(obj) {
+        nid = obj.id;
+        id = nid.split('_')[1];
+        nid = nid.slice(0, -4);
+        start = nid + 'start';
+        end = nid + 'end';
+        school = nid + 'school';
+        major = nid + 'major';
+
+        edu_start = document.getElementById(start).value;
+        edu_end = document.getElementById(end).value;
+        edu_school = document.getElementById(school).value;
+        edu_major = document.getElementById(major).value;
+
+        insertLimit = new Object();
+        insertLimit.id = id;
+        insertLimit.start = edu_start;
+        insertLimit.end = edu_end;
+        insertLimit.school = edu_school;
+        insertLimit.major = edu_major;
+
+        $.ajax({
+          type: "POST",
+          url: "/update_education",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(insertLimit),
+          success: function(data) {
+            alert('保存成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("保存失败");
+          }
+        });
+      }
+
+      function del_edu(obj) {
+        nid = obj.id;
+        id = nid.split('_')[1];
+
+        delLimit = new Object();
+        delLimit.id = id;
+
+        $.ajax({
+          type: "POST",
+          url: "/del_education",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(delLimit),
+          success: function(data) {
+            alert('删除成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("删除失败");
+          }
+        });
+      }
+
+      $('#education_bj_save').click(function() {
+        var start = document.getElementById('education_bj_start').value;
+        var end = document.getElementById('education_bj_end').value;
+        var school = document.getElementById('education_bj_school').value;
+        var major = document.getElementById('education_bj_major').value;
+
+        var insertLimit = new Object();
+        insertLimit.start = start;
+        insertLimit.end = end;
+        insertLimit.school = school;
+        insertLimit.major = major;
+
+        $.ajax({
+          type: "POST",
+          url: "/insert_education",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(insertLimit),
+          success: function(data) {
+            alert('新增成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("新增失败");
+          }
+        });
+      });
+
+      function save_work(obj) {
+        nid = obj.id;
+        id = nid.split('_')[1];
+        nid = nid.slice(0, -4);
+        start = nid + 'start';
+        end = nid + 'end';
+        place = nid + 'place';
+        job = nid + 'job';
+        describe_1 = nid + 'describe_1';
+        describe_2 = nid + 'describe_2';
+        describe_3 = nid + 'describe_3';
+
+        work_start = document.getElementById(start).value;
+        work_end = document.getElementById(end).value;
+        work_place = document.getElementById(place).value;
+        work_job = document.getElementById(job).value;
+        work_describe_1 = document.getElementById(describe_1).value;
+        work_describe_2 = document.getElementById(describe_2).value;
+        work_describe_3 = document.getElementById(describe_3).value;
+
+        insertLimit = new Object();
+        insertLimit.id = id;
+        insertLimit.start = work_start;
+        insertLimit.end = work_end;
+        insertLimit.place = work_place;
+        insertLimit.job = work_job;
+        insertLimit.describe_1 = work_describe_1;
+        insertLimit.describe_2 = work_describe_2;
+        insertLimit.describe_3 = work_describe_3;
+
+        $.ajax({
+          type: "POST",
+          url: "/update_work",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(insertLimit),
+          success: function(data) {
+            alert('保存成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("保存失败");
+          }
+        });
+      }
+
+      function del_work(obj) {
+        nid = obj.id;
+        id = nid.split('_')[1];
+
+        delLimit = new Object();
+        delLimit.id = id;
+
+        $.ajax({
+          type: "POST",
+          url: "/del_work",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(delLimit),
+          success: function(data) {
+            alert('删除成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("删除失败");
+          }
+        });
+      }
+
+      $('#work_bj_save').click(function() {
+        var start = document.getElementById('work_bj_start').value;
+        var end = document.getElementById('work_bj_end').value;
+        var place = document.getElementById('work_bj_place').value;
+        var job = document.getElementById('work_bj_job').value;
+        var describe_1 = document.getElementById('work_bj_describe_1').value;
+        var describe_2 = document.getElementById('work_bj_describe_2').value;
+        var describe_3 = document.getElementById('work_bj_describe_3').value;
+
+        var insertLimit = new Object();
+        insertLimit.start = start;
+        insertLimit.end = end;
+        insertLimit.place = place;
+        insertLimit.job = job;
+        insertLimit.describe_1 = describe_1;
+        insertLimit.describe_2 = describe_2;
+        insertLimit.describe_3 = describe_3;
+
+        $.ajax({
+          type: "POST",
+          url: "/insert_work",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(insertLimit),
+          success: function(data) {
+            alert('新增成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("新增失败");
+          }
+        });
+      });
+
+      function save_program(obj) {
+        nid = obj.id;
+        id = nid.split('_')[1];
+        nid = nid.slice(0, -4);
+        start = nid + 'start';
+        end = nid + 'end';
+        place = nid + 'place';
+        job = nid + 'job';
+        describe_1 = nid + 'describe_1';
+        describe_2 = nid + 'describe_2';
+        describe_3 = nid + 'describe_3';
+
+        program_start = document.getElementById(start).value;
+        program_end = document.getElementById(end).value;
+        program_place = document.getElementById(place).value;
+        program_job = document.getElementById(job).value;
+        program_describe_1 = document.getElementById(describe_1).value;
+        program_describe_2 = document.getElementById(describe_2).value;
+        program_describe_3 = document.getElementById(describe_3).value;
+
+        insertLimit = new Object();
+        insertLimit.id = id;
+        insertLimit.start = program_start;
+        insertLimit.end = program_end;
+        insertLimit.place = program_place;
+        insertLimit.job = program_job;
+        insertLimit.describe_1 = program_describe_1;
+        insertLimit.describe_2 = program_describe_2;
+        insertLimit.describe_3 = program_describe_3;
+
+        $.ajax({
+          type: "POST",
+          url: "/update_program",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(insertLimit),
+          success: function(data) {
+            alert('保存成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("保存失败");
+          }
+        });
+      }
+
+      function del_program(obj) {
+        nid = obj.id;
+        id = nid.split('_')[1];
+
+        delLimit = new Object();
+        delLimit.id = id;
+
+        $.ajax({
+          type: "POST",
+          url: "/del_program",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(delLimit),
+          success: function(data) {
+            alert('删除成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("删除失败");
+          }
+        });
+      }
+
+      $('#program_bj_save').click(function() {
+        var start = document.getElementById('program_bj_start').value;
+        var end = document.getElementById('program_bj_end').value;
+        var place = document.getElementById('program_bj_place').value;
+        var job = document.getElementById('program_bj_job').value;
+        var describe_1 = document.getElementById('program_bj_describe_1').value;
+        var describe_2 = document.getElementById('program_bj_describe_2').value;
+        var describe_3 = document.getElementById('program_bj_describe_3').value;
+
+        var insertLimit = new Object();
+        insertLimit.start = start;
+        insertLimit.end = end;
+        insertLimit.place = place;
+        insertLimit.job = job;
+        insertLimit.describe_1 = describe_1;
+        insertLimit.describe_2 = describe_2;
+        insertLimit.describe_3 = describe_3;
+
+        $.ajax({
+          type: "POST",
+          url: "/insert_program",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(insertLimit),
+          success: function(data) {
+            alert('新增成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("新增失败");
+          }
+        });
+      });
+
+      function save_skill(obj) {
+        id = obj.name;
+        nid = 'skill_' + id + '_describe'
+
+        skill_describe = document.getElementById(nid).value;
+
+        insertLimit = new Object();
+        insertLimit.id = id;
+        insertLimit.describe = skill_describe;
+
+        $.ajax({
+          type: "POST",
+          url: "/update_skill",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(insertLimit),
+          success: function(data) {
+            alert('保存成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("保存失败");
+          }
+        });
+      }
+
+      function del_skill(obj) {
+        nid = obj.id;
+        id = nid.split('_')[1];
+
+        delLimit = new Object();
+        delLimit.id = id;
+
+        $.ajax({
+          type: "POST",
+          url: "/del_skill",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(delLimit),
+          success: function(data) {
+            alert('删除成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("删除失败");
+          }
+        });
+      }
+
+      $('#skill_bj_save').click(function() {
+        var skill_describe = document.getElementById('skill_describe').value;
+
+        var insertLimit = new Object();
+        insertLimit.describe = skill_describe;
+
+        $.ajax({
+          type: "POST",
+          url: "/insert_skill",
+          contentType: "application/json;charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(insertLimit),
+          success: function(data) {
+            alert('新增成功');
+            window.location.reload();
+          },
+          error: function() {
+            alert("新增失败");
+          }
+        });
+      });
+
+      function show_describe(obj) {
+        var id = obj.id;
+        id = id + '_describe';
+        if (obj.innerHTML == '展开') {
+          $('#' + id).attr('class', 'show');
+          obj.innerHTML = '折叠';
+        } else if (obj.innerHTML == '折叠') {
+          $('#' + id).attr('class', 'hidden');
+          obj.innerHTML = '展开';
+        }
+      }
+
+      function hidden_describe(obj) {
+        var id = obj.id;
+        id = id + '_describe';
+        $('#' + id).attr('class', 'hidden');
+        obj.innerHTML = '展开';
+        obj.onclick = 'show_describe(this)';
+      }</script>
+  </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
