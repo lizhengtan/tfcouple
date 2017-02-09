@@ -35,6 +35,52 @@ def index():
         weather = ''
     return render_template('index.html',weather=weather)
 
+@app.route('/login',methods=['GET','POST'])
+def login():
+    data = json.loads(request.data)
+    user = data['user']
+    psw = data['psw']
+
+@app.route('/register',methods=['GET','POST'])
+def register():
+    ip = request.remote_addr
+    try:
+        add = ip2add(ip)
+        city = add.split('市')[0]
+        city = urllib.quote(str(city))
+        weather = city_weather(city)
+    except:
+        print '未获取到天气信息'
+        weather = ''
+    #data = json.loads(request.data)
+    #user = data['user']
+    #psw = data['psw']
+    #email = data['email']
+    return render_template('register.html',weather=weather)
+
+@app.route('/search_user',methods=['GET','POST'])
+def search_user():
+    data = json.loads(request.data)
+    user = data['user']
+    sql = 'select * from user where user=\'%s\'' % user
+    result = select_mysql(sql)
+    if len(result) == 0:
+        print '未注册'
+        return jsonify({'ok': True})
+    else:
+        print '已注册'
+        return jsonify({'ok': False})
+
+@app.route('/insert_user',methods=['GET','POST'])
+def insert_user():
+    data = json.loads(request.data)
+    user = data['user']
+    psw = data['psw']
+    email = data['email']
+    sql = 'insert into user (user,psw,email) values (\'%s\',\'%s\',\'%s\')' % (user,psw,email)
+    query_mysql(sql)
+    return jsonify({'ok': True})
+
 
 @app.route('/information',methods=['GET', 'POST'])
 def information():

@@ -1,0 +1,62 @@
+链家数据爬取笔记
+
+URL结构  城市.lianjia.com/chengjiao/地区/筛选条件
+
+城市
+
+北京 bj
+天津 tj
+南京 nj
+成都 cd
+重庆 cq
+长沙 cs
+青岛 qd
+大连 dl
+上海 sh
+深圳 sz
+苏州 su
+广州 gz
+杭州 hz
+济南 jn
+
+北京
+
+东城 dongcheng 
+西城 xicheng
+朝阳 chaoyang
+海淀 haidian
+丰台 fengtai
+石景山 shijingshan
+通州 tongzhou
+昌平 changping
+大兴 daxing
+亦庄开发区 yizhuangkaifaqu
+顺义 shunyi
+房山 fangshan
+门头沟 mentougou
+
+筛选条件 
+
+售价 p
+面积 a
+房型 l
+用途 sf
+楼层 lc
+朝向 f
+楼龄 y
+装修 de
+有电梯 ie
+集体供暖 hy
+
+
+
+
+
+
+
+
+
+
+
+
+
