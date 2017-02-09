@@ -19,7 +19,7 @@ def get_information():
 
 
 def get_educations():
-    sql_str = 'select id,start,end,school,major from resume_education where valid=\'1\' order by start desc'
+    sql_str = 'select id,start,end,school,major from resume_education where valid=\'1\' order by start desc '
     databases = select_mysql(sql_str)
     educations = []
     for database in databases:
@@ -29,7 +29,7 @@ def get_educations():
 
 
 def get_works():
-    sql_str = 'select id,start,end,place,job,describe_1,describe_2,describe_3 from resume_work where valid=\'1\' order by start desc'
+    sql_str = 'select id,start,end,place,job,describe_1,describe_2,describe_3 from resume_work where valid=\'1\' order by start desc '
     databases = select_mysql(sql_str)
     works = []
     for database in databases:
