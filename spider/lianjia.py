@@ -5,6 +5,7 @@ import MySQLdb
 import sys
 import urllib2
 import time
+import random
 
 
 reload(sys)
@@ -63,7 +64,7 @@ def check_condition(city,string):
 	url = 'http://bj.lianjia.com/chengjiao/' + city + '/' + string
 	req = urllib2.Request(url,headers = headers)
 	response = urllib2.urlopen(req)
-	time.sleep(1)
+	time.sleep(random.randint(1,3))
 	soup = BeautifulSoup(response,'lxml')
 	sum_nums = soup.select('body > div.content > div.leftContent > div.resultDes.clear > div.total.fl > span')
 	for sum_num in sum_nums:
