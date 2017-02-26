@@ -9,6 +9,8 @@ import random
 from mysql import *
 
 
+
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
@@ -19,64 +21,55 @@ headers = {
 }
 
 
+
+
 city_path = ['heping','nankai','hexi','hebei','hedong','hongqiao','xiqing','beichen','dongli','jinnan','tanggu','kaifaqu']
 
 def get_data(city,url,num):
-	url = url + 'pg' + str(num)
-	print url
+	url = url + '/rs' + str(num)
 	req = urllib2.Request(url,headers=headers) 
 	response = urllib2.urlopen(req)
 	#data = requests.get(url , headers = headers)
 	#用reuqests会乱码，原因暂时不清楚
 	time.sleep(random.randint(1,90))
 	soup = BeautifulSoup(response,'lxml')
-	#titles = soup.find_all("div",class_="title")
-	dates = soup.find_all("div",class_="dealDate")
-	prices = soup.find_all("div",class_="totalPrice")
-	average_prices = soup.find_all("div",class_="unitPrice")
-	urlss = soup.select('body > div > div > ul > li > div > div.title > a')
-	for date,price,average_price,urls in zip(dates,prices,average_prices,urlss):
-		print date.get_text(),price.get_text(),average_price.get_text(),urls.get('href')
-		sql_str = 'insert into lianjia_tianjin values(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')' % (city,date.get_text(),price.get_text(),average_price.get_text(),urls.get('href'))
+	titles = soup.select('body > div.content > div.leftContent > ul > li > div.info > div.title')
+	districts = soup.find_all("a",class_="district")
+	bizcircles = soup.find_all("a",class_="bizcircle")
+	taglists = soup.find_all("div",class_="tagList")
+	totalprices = soup.select('body > div.content > div.leftContent > ul > li > div.xiaoquListItemRight > div.xiaoquListItemPrice > div.totalPrice > span')
+	#print type(titles)
+	for title,district,bizcircle,taglist,totalprice in zip(titles,districts,bizcircles,taglists,totalprices):
+		sql_str = 'insert into lianjia_tianjin_list (title,district,bizcircle,taglist,totalprice) values (\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')' % (title.get_text().strip(),district.get_text().strip(),bizcircle.get_text().strip(),taglist.get_text().strip(),totalprice.get_text().strip())
 		try:
 			query_mysql(sql_str)
 		except:
-			pass
-	del urlss
+			print title.get_text(),district.get_text(),bizcircle.get_text(),taglist.get_text(),totalprice.get_text()
 
-def check_condition(city,xiaoqu):
-	url = 'http://tj.lianjia.com/chengjiao/rs%s' % xiaoqu
+
+def get_condition(city):
+	url = 'http://tj.lianjia.com/xiaoqu/' + city
 	req = urllib2.Request(url,headers = headers)
 	response = urllib2.urlopen(req)
-	time.sleep(random.randint(1,90))
+	time.sleep(random.randint(5,30))
 	soup = BeautifulSoup(response,'lxml')
-	sum_nums = soup.select('body > div.content > div.leftContent > div.resultDes.clear > div.total.fl > span')
-
-	dates = soup.find_all("div",class_="dealDate")
-	prices = soup.find_all("div",class_="totalPrice")
-	average_prices = soup.find_all("div",class_="unitPrice")
-	urlss = soup.select('body > div > div > ul > li > div > div.title > a')
-	for date,price,average_price,urls in zip(dates,prices,average_prices,urlss):
-		print date.get_text(),price.get_text(),average_price.get_text(),urls.get('href')
-		sql_str = 'insert into lianjia_tianjin values(\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')' % (city,date.get_text(),price.get_text(),average_price.get_text(),urls.get('href'))
-		try:
-			query_mysql(sql_str)
-		except:
-			pass
-	del urlss
-
+	sum_nums = soup.select('body > div.content > div.leftContent > div.resultDes.clear > h2 > span')
 	for sum_num in sum_nums:
-		if 0 < int(sum_num.get_text()) < 3500:
-			print url + '|||' + sum_num.get_text()
+		if 0 < int(sum_num.get_text()) < 3000:
 			page_num = int(sum_num.get_text()) / 30 + 1
+			print '行政区 %s 小区列表共 %s 页' % (city,page_num)
 			for num in range(1,page_num):
 				get_data(city,url,num)
-			return 'ture'
- 
+		else:
+			print '没有抓取' + city
 
 
-sql_str = 'select title,district from lianjia_tianjin_list order by title desc '
-database = select_mysql(sql_str)
-for data in database:
-	check_condition(data[1],data[0])
+
+for city in city_path:
+	print '开始检索行政区：%s' % city
+	get_condition(city)
+
+
+
+
 
